@@ -2,13 +2,13 @@ import { Component } from '@angular/core';
 import { CharacterService } from '../../services/character.service';
 import { ActivatedRoute } from '@angular/router';
 import { Character } from '../../models/character';
-import { NgIf, NgFor } from '@angular/common';
+import { NgIf, NgFor, NgClass } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-character',
   standalone: true,
-  imports: [NgIf, NgFor, RouterLink],
+  imports: [NgIf, NgFor, RouterLink, NgClass],
   templateUrl: './character.component.html',
   styleUrl: './character.component.scss'
 })
@@ -19,6 +19,7 @@ export class CharacterComponent {
 
   url: string = 'https://api.disneyapi.dev/character'
   character!: Character
+  public card = 'card'
 
   catchOneCharacter(id?: number, isNext?: boolean){
     if(!id){

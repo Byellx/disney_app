@@ -1,0 +1,104 @@
+@import '../../../styles.scss';
+
+@mixin flex-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+};
+
+@mixin button-style{
+    border: none;
+    height: 2em;
+    width: 5em;
+    transition: all .4s ease-in-out;
+    color: $crayolas-orange-yellow;
+    background-color: $dark-slate-blue;
+}
+
+.main{
+    @include flex-center();
+    padding-top: 15vh;
+    width: 100vw;
+    flex-direction: column;
+    background-color: $spanish-pink;
+
+    .search{
+        @include flex-center();
+        width: 50%;
+        height: 10vh;
+
+        fieldset{
+            @include flex-center();
+            height: 100%;
+            width: 100%;
+            border: none;
+
+            select{
+                height: 2em;
+                outline: none;
+                background-color: $upsdell-red;
+                color: $crayolas-orange-yellow;
+            }
+
+            input{
+                @include flex-center();
+                height: 2em;
+                width: 60%;
+                outline: none;
+                border: 1px solid $oxford-blue;
+            }
+
+            button{
+                @include button-style();
+            }
+
+            button:hover{
+                cursor: pointer;
+                background-color: lighten($dark-slate-blue, 10%);
+            }
+        }
+    }
+
+   .table{
+        width: 80%;
+        border-collapse: collapse;
+
+        th, td{
+            border: 1px solid $oxford-blue;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th{
+            background-color: $oxford-blue;
+            color: $crayolas-orange-yellow;
+            text-align: center;
+        }
+
+        td{
+            background-color: $crayolas-orange-yellow;
+            color:$upsdell-red;
+
+            a{
+                color: blue;
+                text-decoration: underline;
+            }
+        }
+    }
+
+    .buttons{
+        @include flex-center();
+        width: 100%;
+
+        button{
+            @include button-style();
+            width: 10em;
+            margin: 3em;
+        }
+
+        button:hover{
+            cursor: pointer;
+            background-color: lighten($dark-slate-blue, 10%);           
+        }
+    }
+}

@@ -1,42 +1,81 @@
-<form [formGroup]="searchBox">
-    <fieldset>
-        <select
-            formControlName="searchOption"
-        >
-            <option value="name">Nome</option>
-            <option value="film">Filme</option>
-        </select>
+<main [ngClass]="charactersStyles.main">
+    <form
+        [formGroup]="searchBox"
+        [ngClass]="charactersStyles.search"
+    >
+        <fieldset>
+            <select
+                formControlName="searchOption"
+            >
+                <option value="name">Nome</option>
+                <option value="film">Filme</option>
+            </select>
 
-        <input
-            formControlName="searchText"
-            type="text"
-            minlength="1"
-            maxlength="100"
-            required
-        />
+            <input
+                formControlName="searchText"
+                type="text"
+                minlength="1"
+                maxlength="100"
+                required
+            />
+
+            <button
+                [disabled]="searchBox.invalid"
+                (click)="catchCharacterByParams()"
+            >Buscar</button>
+        </fieldset>
+    </form>
+
+    <div
+        *ngIf="pageInfo"
+        [ngClass]="charactersStyles.buttons"
+    >
+        <button
+            *ngIf="pageInfo.previousPage !== null"
+            (click)="previousPage()"
+        >Página Anterior</button>
 
         <button
-            [disabled]="searchBox.invalid"
-            (click)="catchCharacterByParams()"
-        >Buscar</button>
-    </fieldset>
-</form>
+            *ngIf="pageInfo.nextPage !== null"
+            (click)="nextPage()"
+        >Próxima Página</button>
+    </div>
 
-<ul *ngIf="allCharacters">
-    <li *ngFor="let character of allCharacters">
-    ID: {{character._id}} - PERSONAGEM: {{character.name}} - FILME: {{character.films[0]}}
-    <a routerLink="/characters/{{character._id}}">Acessar Personagem</a>
-    </li>
-</ul>
+    <table [ngClass]="charactersStyles.table">
+        <thead>
+            <tr>
+                <th>Personagem</th>
+                <th>Filmes</th>
+                <th>Seriados</th>
+                <th>Jogos</th>
+                <th>Curtas</th>
+                <th>Sobre</th>
+            </tr>
+        </thead>
+        <tbody *ngIf="allCharacters">
+            <tr *ngFor="let character of allCharacters">
+                <td>{{character.name}}</td>
+                <td>{{character.films[0]}}</td>
+                <td>{{character.tvShows[0]}}</td>
+                <td>{{character.videoGames[0]}}</td>
+                <td>{{character.shortFilms[0]}}</td>
+                <td><a routerLink="/characters/{{character._id}}">Ver Mais</a></td>
+            </tr>
+        </tbody>
+    </table>
 
-<div *ngIf="pageInfo">
-    <button
-        *ngIf="pageInfo.previousPage !== null"
-        (click)="previousPage()"
-    >Página Anterior</button>
+    <div
+        *ngIf="pageInfo"
+        [ngClass]="charactersStyles.buttons"
+    >
+        <button
+            *ngIf="pageInfo.previousPage !== null"
+            (click)="previousPage()"
+        >Página Anterior</button>
 
-    <button
-        *ngIf="pageInfo.nextPage !== null"
-        (click)="nextPage()"
-    >Próxima Página</button>
-</div>
+        <button
+            *ngIf="pageInfo.nextPage !== null"
+            (click)="nextPage()"
+        >Próxima Página</button>
+    </div>
+</main>

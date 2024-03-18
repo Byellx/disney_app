@@ -3,7 +3,7 @@ import { CharacterService } from '../../services/character.service';
 import { Character } from '../../models/character';
 import { PageInfo } from '../../models/page-info';
 import { RouterLink } from '@angular/router';
-import { NgIf, NgFor } from '@angular/common';
+import { NgIf, NgFor, NgClass } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
@@ -14,7 +14,8 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
     NgIf,
     NgFor,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgClass
   ],
   templateUrl: './characters.component.html',
   styleUrl: './characters.component.scss'
@@ -34,6 +35,13 @@ export class CharactersComponent {
 
   public allCharacters!: Character[]
   public pageInfo!: PageInfo
+  public charactersStyles = {
+    main: 'main',
+    search: 'search',
+    table: 'table',
+    buttons: 'buttons'
+
+  }
 
   urlAPI: string = 'https://api.disneyapi.dev/character'
   searchBox: FormGroup

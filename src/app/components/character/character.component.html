@@ -1,4 +1,4 @@
-<div *ngIf="character">
+<div *ngIf="character" [ngClass]="card">
     <h2>Personagem: {{character.name}}</h2>
 
     <img src={{character.imageUrl}}/>
