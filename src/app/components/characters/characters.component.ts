@@ -52,6 +52,20 @@ export class CharactersComponent {
     }else{
       this.characterService.getAllCharacters(url).subscribe((characters)=>{
         this.pageInfo = characters.info
+
+        let urlNext = characters.info.nextPage
+        let urlPrevious = characters.info.previousPage
+
+        if(urlNext){
+          urlNext = urlNext.replace(/^http:\/\//i, 'https://')
+          this.pageInfo.nextPage = urlNext
+        }
+
+        if(urlPrevious){
+          urlPrevious = urlPrevious.replace(/^http:\/\//i, 'https://')
+          this.pageInfo.previousPage = urlPrevious
+        }
+        
         this.allCharacters = characters.data
       })
     }
