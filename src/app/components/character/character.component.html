@@ -1,70 +1,80 @@
-<div *ngIf="character" [ngClass]="card">
-    <h2>Personagem: {{character.name}}</h2>
-
-    <img src={{character.imageUrl}}/>
-
-    <a href={{character.sourceUrl}}>Mais Sobre</a>
-
-    <ul *ngIf="character.films">
-        <h3>Filmes</h3>
-        <li *ngFor="let film of character.films">
-            {{film}}
-        </li>
-    </ul>
-
-    <ul *ngIf="character.shortFilms">
-        <h3>Curtas</h3>
-        <li *ngFor="let shortFilm of character.shortFilms">
-            {{shortFilm}}
-        </li>
-    </ul>
-
-    <ul *ngIf="character.tvShows">
-        <h3>TV Shows</h3>
-        <li *ngFor="let tvShow of character.tvShows">
-            {{tvShow}}
-        </li>
-    </ul>
-
-    <ul *ngIf="character.videoGames">
-        <h3>Jogos</h3>
-        <li *ngFor="let videoGame of character.videoGames">
-            {{videoGame}}
-        </li>
-    </ul>
-
-    <ul *ngIf="character.parkAttractions">
-        <h3>Atrações</h3>
-        <li *ngFor="let parkAttraction of character.parkAttractions">
-            {{parkAttraction}}
-        </li>
-    </ul>
-
-    <ul *ngIf="character.allies">
-        <h3>Aliados</h3>
-        <li *ngFor="let ally of character.allies">
-            {{ally}}
-        </li>
-    </ul>
-
-    <ul *ngIf="character.enemies">
-        <h3>Inimigos</h3>
-        <li *ngFor="let enemy of character.enemies">
-            {{enemy}}
-        </li>
-    </ul>
-
-    <div>
-        <button
-            *ngIf="character._id >= 1"
-            routerLink="/characters/{{character._id-1}}"
-            (click)="previousCharacter(character._id-1)"
-        >Anterior</button>
+<main [ngClass]="main">
+    <div *ngIf="character" [ngClass]="card">
+        <section [ngClass]="header">
+            <h2 *ngIf="character.name;else charName">{{character.name}}</h2>
+    
+            <ng-template #charName>
+                <h2>Nome Desconhecido</h2>
+            </ng-template>
         
-        <button
-            *ngIf="character._id <= 7526"
-            routerLink="/characters/{{character._id+1}}"
-            (click)="nextCharacter(character._id+1)"
-        >Próximo</button>
+            <img src={{character.imageUrl}} alt="Imagem de {{character.name}}"/>
+        
+            <a href={{character.sourceUrl}} target="_blank">Mais Sobre</a>
+        </section>
+    
+        <section [ngClass]="items">
+            <ul *ngIf="character.films.length">
+                <h3>Filmes</h3>
+                <li *ngFor="let film of character.films">
+                    {{film}}
+                </li>
+            </ul>
+        
+            <ul *ngIf="character.shortFilms.length">
+                <h3>Curtas</h3>
+                <li *ngFor="let shortFilm of character.shortFilms">
+                    {{shortFilm}}
+                </li>
+            </ul>
+        
+            <ul *ngIf="character.tvShows.length">
+                <h3>TV Shows</h3>
+                <li *ngFor="let tvShow of character.tvShows">
+                    {{tvShow}}
+                </li>
+            </ul>
+        
+            <ul *ngIf="character.videoGames.length">
+                <h3>Jogos</h3>
+                <li *ngFor="let videoGame of character.videoGames">
+                    {{videoGame}}
+                </li>
+            </ul>
+        
+            <ul *ngIf="character.parkAttractions.length">
+                <h3>Atrações</h3>
+                <li *ngFor="let parkAttraction of character.parkAttractions">
+                    {{parkAttraction}}
+                </li>
+            </ul>
+        
+            <ul *ngIf="character.allies.length">
+                <h3>Aliados</h3>
+                <li *ngFor="let ally of character.allies">
+                    {{ally}}
+                </li>
+            </ul>
+        
+            <ul *ngIf="character.enemies.length">
+                <h3>Inimigos</h3>
+                <li *ngFor="let enemy of character.enemies">
+                    {{enemy}}
+                </li>
+            </ul>    
+        </section>
+    
+        <section [ngClass]="buttons">
+            <button
+                *ngIf="character._id >= 1"
+                routerLink="/characters/{{character._id-1}}"
+                (click)="previousCharacter(character._id-1)"
+            >Anterior</button>
+            
+            <button
+                *ngIf="character._id <= 7526"
+                routerLink="/characters/{{character._id+1}}"
+                (click)="nextCharacter(character._id+1)"
+            >Próximo</button>
+        </section>
     </div>
-</div>
+</main>

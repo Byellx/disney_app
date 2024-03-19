@@ -20,6 +20,10 @@ export class CharacterComponent {
   url: string = 'https://api.disneyapi.dev/character'
   character!: Character
   public card = 'card'
+  public items = 'items'
+  public buttons = 'buttons'
+  public main = 'main'
+  public header = 'header'
 
   catchOneCharacter(id?: number, isNext?: boolean){
     if(!id){

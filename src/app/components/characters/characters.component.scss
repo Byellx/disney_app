@@ -1,24 +1,9 @@
 @import '../../../styles.scss';
 
-@mixin flex-center{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-};
-
-@mixin button-style{
-    border: none;
-    height: 2em;
-    width: 5em;
-    transition: all .4s ease-in-out;
-    color: $crayolas-orange-yellow;
-    background-color: $dark-slate-blue;
-}
-
 .main{
     @include flex-center();
     padding-top: 15vh;
-    width: 100vw;
+    width: 100%;
     flex-direction: column;
     background-color: $spanish-pink;
 
@@ -38,6 +23,11 @@
                 outline: none;
                 background-color: $upsdell-red;
                 color: $crayolas-orange-yellow;
+            }
+
+            select:hover{
+                cursor: pointer;
+                background-color: lighten($upsdell-red, 10%);
             }
 
             input{
@@ -75,13 +65,29 @@
             text-align: center;
         }
 
-        td{
+        tr:nth-child(odd){
             background-color: $crayolas-orange-yellow;
             color:$upsdell-red;
 
             a{
-                color: blue;
-                text-decoration: underline;
+                color:$dark-slate-blue;
+            }
+
+            a:hover{
+                color:lighten($dark-slate-blue, 30%);
+            }
+        }
+
+        tr:nth-child(even){
+            background-color: $upsdell-red;
+            color:$crayolas-orange-yellow;
+
+            a{
+                color:$spanish-pink;
+            }
+
+            a:hover{
+                color: lighten($spanish-pink, 30%);
             }
         }
     }

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..900;1,400..900&display=swap');
+
 $dark-slate-blue: #393E8F;
 $crayolas-orange-yellow: #F3CC64;
 $upsdell-red: #B12228;
@@ -5,8 +7,42 @@ $spanish-pink: #EFBEB7;
 $white: #FFF;
 $oxford-blue: #12194A;
 
+@mixin button-style{
+    border: none;
+    height: 2em;
+    width: 5em;
+    transition: all .4s ease-in-out;
+    color: $crayolas-orange-yellow;
+    background-color: $dark-slate-blue;
+}
+
+@mixin flex-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+};
+
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    transition: all .4s ease-in-out;
+    font-family: "Alegreya", serif;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: $upsdell-red;
+    transition: all .5s ease-in-out;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: darken($upsdell-red, 10%);
+}
+
+::-webkit-scrollbar-track{
+    background-color: darken($crayolas-orange-yellow, 10%);
 }
