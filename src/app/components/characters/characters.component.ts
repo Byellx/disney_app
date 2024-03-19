@@ -89,6 +89,19 @@ export class CharactersComponent {
       this.allCharacters = charactersByName.data
       this.pageInfo = charactersByName.info
 
+      let urlNext = charactersByName.info.nextPage
+      let urlPrevious = charactersByName.info.previousPage
+
+      if(urlNext){
+        urlNext = urlNext.replace(/^http:\/\//i, 'https://')
+        this.pageInfo.nextPage = urlNext
+      }
+
+      if(urlPrevious){
+        urlPrevious = urlPrevious.replace(/^http:\/\//i, 'https://')
+        this.pageInfo.previousPage = urlPrevious
+      }
+
       if(charactersByName.info.nextPage){
         this.pageInfo.nextPage = charactersByName.info.nextPage + `&name=${name}`
       }
@@ -104,6 +117,18 @@ export class CharactersComponent {
       this.allCharacters = charactersByFilm.data
       this.pageInfo = charactersByFilm.info
       
+      let urlNext = charactersByFilm.info.nextPage
+      let urlPrevious = charactersByFilm.info.previousPage
+
+      if(urlNext){
+        urlNext = urlNext.replace(/^http:\/\//i, 'https://')
+        this.pageInfo.nextPage = urlNext
+      }
+
+      if(urlPrevious){
+        urlPrevious = urlPrevious.replace(/^http:\/\//i, 'https://')
+        this.pageInfo.previousPage = urlPrevious
+      }
 
       if(charactersByFilm.info.nextPage){
         this.pageInfo.nextPage = charactersByFilm.info.nextPage + `&films=${film}`
